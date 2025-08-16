@@ -2,7 +2,7 @@
 
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
-
+=====================================================================
 ========                                    .-----.          ========
 ========         .----------------------.   | === |          ========
 ========         |.-""""""""""""""""""-.|   |-----|          ========
@@ -108,7 +108,7 @@ vim.o.relativenumber = true
 vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
-vim.o.showmode = true
+vim.o.showmode = false
 
 -- Tab and indentation settings
 vim.opt.tabstop = 4
@@ -657,7 +657,7 @@ require('lazy').setup({
         } or {},
         virtual_text = {
           source = 'if_many',
-          spacing = 2,
+          spacing = 1,
           format = function(diagnostic)
             local diagnostic_message = {
               [vim.diagnostic.severity.ERROR] = diagnostic.message,
@@ -891,6 +891,7 @@ require('lazy').setup({
     },
   },
 
+  -- COLOR SCHEMES
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -909,7 +910,22 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-night'
+      -- vim.cmd.colorscheme 'default'
+    end,
+  },
+
+  {
+    'catppuccin/nvim',
+    name = 'catppucin',
+    priority = 1000,
+    config = function()
+      ---@diagnostic disable-next-line: missing-fields
+      require('catppuccin').setup {
+        styles = {
+          comments = {},
+        },
+      }
+      vim.cmd.colorscheme 'catppuccin'
     end,
   },
 
@@ -989,10 +1005,11 @@ require('lazy').setup({
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
   -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
+  -- require 'kickstart.plugins.neo-tree', -- TODO: will add eventually, just need to take time to set it up
+  --
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
