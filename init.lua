@@ -294,7 +294,6 @@ require('lazy').setup({
     ---@type render.md.UserConfig
     opts = {},
   },
-  
 
   -- See `:help gitsigns` to understand what the configuration keys do
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -921,7 +920,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      -- vim.cmd.colorscheme 'default'
+      vim.cmd.colorscheme 'tokyonight-moon'
     end,
   },
 
@@ -936,7 +935,7 @@ require('lazy').setup({
           comments = {},
         },
       }
-      vim.cmd.colorscheme 'catppuccin'
+      -- vim.cmd.colorscheme 'catppuccin'
     end,
   },
 
