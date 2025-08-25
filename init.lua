@@ -920,7 +920,7 @@ require('lazy').setup({
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
       -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight-moon'
+      -- vim.cmd.colorscheme 'tokyonight-moon'
     end,
   },
 
@@ -936,6 +936,15 @@ require('lazy').setup({
         },
       }
       -- vim.cmd.colorscheme 'catppuccin'
+    end,
+  },
+
+  {
+    'bluz71/vim-moonfly-colors',
+    name = 'moonfly',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'moonfly'
     end,
   },
 
