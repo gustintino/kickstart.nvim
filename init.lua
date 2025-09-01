@@ -165,7 +165,7 @@ vim.o.inccommand = 'split'
 vim.o.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.o.scrolloff = 10
+vim.o.scrolloff = 14
 
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
@@ -278,6 +278,51 @@ require('lazy').setup({
   --
   --
   -- MY OWN PLUG INS
+  {
+    'theprimeagen/vim-be-good',
+  },
+
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local harpoon = require 'harpoon'
+
+      -- REQUIRED
+      harpoon:setup()
+      -- REQUIRED
+
+      vim.keymap.set('n', '<leader>ha', function()
+        harpoon:list():add()
+      end, { desc = '[H]arpoon [A]dd buffer' })
+      vim.keymap.set('n', '<leader>hr', function()
+        harpoon:list():remove()
+        vim.cmd 'bd'
+      end, { desc = '[H]arpoon [R]emove buffer' })
+      vim.keymap.set('n', '<leader>he', function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end)
+
+      vim.keymap.set('n', '<C-j>', function()
+        harpoon:list():select(1)
+      end)
+      vim.keymap.set('n', '<C-k>', function()
+        harpoon:list():select(2)
+      end)
+      vim.keymap.set('n', '<C-l>', function()
+        harpoon:list():select(3)
+      end)
+      vim.keymap.set('n', '<C-;>', function()
+        harpoon:list():select(4)
+      end)
+
+      local harpoon_extensions = require 'harpoon.extensions'
+      harpoon:extend(harpoon_extensions.builtins.highlight_current_file())
+      harpoon:extend(harpoon_extensions.builtins.navigate_with_number())
+    end,
+  },
+
   {
     'rafamadriz/friendly-snippets',
     config = function()
@@ -1027,7 +1072,7 @@ require('lazy').setup({
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree', -- TODO: will add eventually, just need to take time to set it up
+  -- require 'kickstart.plugins.neo-tree',
   --
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
